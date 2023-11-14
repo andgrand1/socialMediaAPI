@@ -20,7 +20,7 @@ User must have Node and VS Code for this to operate.
 
 # Usage
 
-it is used to generate a readMe doc.
+it is used to create a social media API.
 
 # Credits
 
