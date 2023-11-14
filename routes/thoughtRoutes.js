@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const Thought = require('../models/Thoughts');
 
 router.get('/', async (req, res) => {
@@ -11,10 +12,9 @@ router.get('/', async (req, res) => {
     }
   });
   
-  // Get a specific thought by ID
   router.get('/:thoughtId', async (req, res) => {
     try {
-      const thought = await Thought.findById(req.params.thoughtId);
+      const thought = await Thought.findById(new mongoose.Types.ObjectId(req.params.thoughtId));
       if (!thought) {
         return res.status(404).json({ message: 'Thought not found' });
       }
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   });
-  
+
   // Create a new thought
   router.post('/', async (req, res) => {
     try {
